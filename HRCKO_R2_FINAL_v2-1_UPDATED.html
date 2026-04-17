@@ -3482,6 +3482,9 @@ function sFormReset() {
   if (typeof updateFotoCount === 'function') updateFotoCount();
   // Vials reset
   if (typeof updateTotalVials === 'function') updateTotalVials();
+  // Atrofija state reset — osiguraj da norm checkboxovi nisu disabled
+  if (typeof updateAtrophyTexts === 'function') updateAtrophyTexts();
+  console.log('[sFormReset] Kompletni reset izvršen — v2.1.5-fix3');
 }
 
 function sNext() {
