@@ -3,7 +3,7 @@
 <html lang="hr">
 <head>
 <meta charset="utf-8"/>
-<title>HRČKO STUDIJA v2.1.5-fix7</title>
+<title>HRČKO STUDIJA v2.1.5-fix8</title>
 <style>
         /* STILOVI */
         body { font-family: Arial, sans-serif; max-width: 950px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; }
@@ -373,7 +373,7 @@
 <div id="study-overlay">
 <div class="smodal">
   <div style="font-size:2.6em;margin-bottom:8px">&#128300;</div>
-  <h2>HR&#268;KO STUDIJA</h2><span style="font-size:0.65em;color:#90caf9;display:block;margin-top:-2px;">v2.1.5-fix7</span>
+  <h2>HR&#268;KO STUDIJA</h2><span style="font-size:0.65em;color:#90caf9;display:block;margin-top:-2px;">v2.1.5-fix8</span>
   <span class="ssub">Inter-observer video rating study</span>
   <label>Rater ID <span style="color:#e53935">*</span>
     <input type="text" id="sinput-rater" placeholder="npr. R01" maxlength="10" oninput="this.value=this.value.toUpperCase()">
@@ -465,7 +465,7 @@
     <div class="sp-row" style="margin-top:4px;"><span class="sp-label">✍️ Pisanje:</span> <span class="sp-val" id="sp-trajanje">– min</span></div>
 </div>
 <div class="container">
-<h2>🔬 HRČKO STUDIJA</h2>
+<h2>🔬 HRČKO STUDIJA <small style="font-size:0.4em;color:#999;font-weight:normal;">v2.1.5-fix8</small></h2>
 <!-- 1. PREPROCEDURALNI DIO -->
 <section id="pre-section">
 <h3 class="collapsible-header" onclick="togglePreSection()">1. Preproceduralno <span class="pre-toggle-icon" id="pre-toggle-icon">▲</span></h3><div id="pre-summary"></div>
@@ -3468,6 +3468,7 @@ function sDownloadCSV() {
 }
 
 function sFormReset() {
+  document.title = "RESET FIRED - fix8 " + new Date().toLocaleTimeString();
   // Reset sve checkboxeve i radio gumbe
   document.querySelectorAll('input[type=checkbox]').forEach(function(el){ el.checked = false; });
   document.querySelectorAll('input[type=radio]').forEach(function(el){ el.checked = false; });
