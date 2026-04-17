@@ -3,7 +3,7 @@
 <html lang="hr">
 <head>
 <meta charset="utf-8"/>
-<title>HRČKO STUDIJA v2.1.5-fix8</title>
+<title>HRČKO STUDIJA v2.1.5-fix9</title>
 <style>
         /* STILOVI */
         body { font-family: Arial, sans-serif; max-width: 950px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; }
@@ -373,7 +373,7 @@
 <div id="study-overlay">
 <div class="smodal">
   <div style="font-size:2.6em;margin-bottom:8px">&#128300;</div>
-  <h2>HR&#268;KO STUDIJA</h2><span style="font-size:0.65em;color:#90caf9;display:block;margin-top:-2px;">v2.1.5-fix8</span>
+  <h2>HR&#268;KO STUDIJA</h2><span style="font-size:0.65em;color:#90caf9;display:block;margin-top:-2px;">v2.1.5-fix9</span>
   <span class="ssub">Inter-observer video rating study</span>
   <label>Rater ID <span style="color:#e53935">*</span>
     <input type="text" id="sinput-rater" placeholder="npr. R01" maxlength="10" oninput="this.value=this.value.toUpperCase()">
@@ -465,7 +465,7 @@
     <div class="sp-row" style="margin-top:4px;"><span class="sp-label">✍️ Pisanje:</span> <span class="sp-val" id="sp-trajanje">– min</span></div>
 </div>
 <div class="container">
-<h2>🔬 HRČKO STUDIJA <small style="font-size:0.4em;color:#999;font-weight:normal;">v2.1.5-fix8</small></h2>
+<h2>🔬 HRČKO STUDIJA <small style="font-size:0.4em;color:#999;font-weight:normal;">v2.1.5-fix9</small></h2>
 <!-- 1. PREPROCEDURALNI DIO -->
 <section id="pre-section">
 <h3 class="collapsible-header" onclick="togglePreSection()">1. Preproceduralno <span class="pre-toggle-icon" id="pre-toggle-icon">▲</span></h3><div id="pre-summary"></div>
@@ -1151,7 +1151,8 @@
 <label><input name="igv2_korpus_red" type="radio" value="bez crvenih znakova"/> Bez crvenih znakova</label>
 <label><input name="igv2_korpus_red" type="radio" value="sa crvenim znakovima"/> Sa crvenim znakovima</label>
 </div></div></div><div class="bio-dynamic-wrapper" data-base-loc="korpus" data-type="pat" data-loc-name="Korpus PATOLOGIJA" style="margin-top:8px; background:#f9fcfb; padding:8px; border-radius:5px; border:1px solid #dcdcdc;"><label class="bio-check" style="font-weight:bold; color:#0277bd;"><input type="checkbox" class="bio-main-cb" onchange="toggleBioDyn(this)"> 🧫 Uzeti biopsiju</label><div class="bio-vials hidden" style="margin-top:6px; display:flex; flex-direction:column; gap:6px; margin-left:24px;"><div class="vial-row"><label style="font-size:0.9em; font-weight:bold;">Bočica: <input type="number" class="vial-input" style="width:60px; text-align:center;" oninput="checkNextBio(this)"></label></div><div class="vial-row hidden"><label style="font-size:0.9em; font-weight:bold;">Bočica: <input type="number" class="vial-input" style="width:60px; text-align:center;" oninput="checkNextBio(this)"></label></div><div class="vial-row hidden"><label style="font-size:0.9em; font-weight:bold;">Bočica: <input type="number" class="vial-input" style="width:60px; text-align:center;" oninput="checkNextBio(this)"></label></div><div class="vial-row hidden"><label style="font-size:0.9em; font-weight:bold;">Bočica: <input type="number" class="vial-input" style="width:60px; text-align:center;" oninput="checkNextBio(this)"></label></div></div></div>
-</div></div></div><textarea class="pathology-input" id="korpus_txt" oninput="autoUncheckNormal('korpus_norm')" rows="1"></textarea><div class="sub-opt" style="margin-top:5px; background:#e8f4f8; padding:8px; border-radius:5px; border:1px solid #b3d4fc; width:95%;">
+
+<div style="margin-top:10px; background:#e8f4f8; padding:10px; border-radius:5px; border:1px solid #b3d4fc;">
     <label style="font-weight:bold; color:#0277bd;"><input type="checkbox" id="kt_korpus_active" onchange="syncKT('korpus_main')"> 📉 Atrofija sluznice (Kimura-Takemoto)</label>
     <div id="kt_korpus_options" class="hidden" style="margin-top:10px;">
 <svg width="100%" viewBox="0 0 680 310" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:8px 0 12px 0;">
@@ -1254,8 +1255,7 @@
 <label><input type="radio" name="kt_klasifikacija" value="O-3 (potpuna atrofija korpusa)" onchange="syncKT('radio')"> <strong>O-3</strong> <small style="color:#c62828;">cijeli korpus + fundus</small></label>
 </div>
 <div id="kt_fundus_warning" class="hidden" style="margin-top:6px; font-size:0.85em; color:#d32f2f; font-weight:bold;">* O-3: atrofija automatski obuhvaća i fundus.</div>
-    </div>
-</div>
+    </div></div></div></div><textarea class="pathology-input" id="korpus_txt" oninput="autoUncheckNormal('korpus_norm')" rows="1"></textarea>
 </div>
 </div>
 <!-- ANTRUM (WITH INFLAM) -->
@@ -3468,7 +3468,7 @@ function sDownloadCSV() {
 }
 
 function sFormReset() {
-  document.title = "RESET FIRED - fix8 " + new Date().toLocaleTimeString();
+  document.title = "RESET FIRED - fix9 " + new Date().toLocaleTimeString();
   // Reset sve checkboxeve i radio gumbe
   document.querySelectorAll('input[type=checkbox]').forEach(function(el){ el.checked = false; });
   document.querySelectorAll('input[type=radio]').forEach(function(el){ el.checked = false; });
