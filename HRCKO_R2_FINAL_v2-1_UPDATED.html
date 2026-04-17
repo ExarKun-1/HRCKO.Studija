@@ -2219,16 +2219,7 @@
 
     // --- GENERATOR ---
     function segUpalaInline(segId, patName, locStr) {
-        let _r2    = document.querySelector('input[name="kt_klasifikacija"]:checked');
-        let _kv    = _r2 ? _r2.value : "";
-        let _kact  = document.getElementById('kt_korpus_active');
-        let _kon   = _kact && _kact.checked;
-        let _isC1  = _kv.includes('C-1');
-        let _isO3  = _kv.includes('O-3');
-        let _fAtEl = document.getElementById('fundus_atrofija');
-        if (segId === 'antrum' && _kon)                                  return '';
-        if (segId === 'korpus' && _kon && !_isC1)                        return '';
-        if (segId === 'fundus' && ((_fAtEl && _fAtEl.checked) || _isO3)) return '';
+        // Atrofija i upala mogu koegzistirati — upala se generira neovisno
         var el = document.getElementById(segId + '_upala');
         if (!el || !el.checked) return '';
         var r    = document.querySelector('input[name="' + patName + '"]:checked');
@@ -2656,8 +2647,8 @@
             const txEl   = document.getElementById(txtId);
             const manual = txEl ? txEl.value.trim() : '';
 
-            // ATROFIJA ima prioritet nad upalom — kad je segment pod atrofijom,
-            // hiperemija se NE generira (segUpalaInline to isto poštuje)
+            // Kad je segment pod atrofijom: buildSeg vraća '' jer KT tekst
+            // pokriva atrofiju globalno. Upala se dodaje ZASEBNO kroz segUpalaInline.
             if (_segUnderAtro) {
                 if (manual) return manual.endsWith('.') ? manual : manual + '.';
                 if (normId === 'fundus_norm' && _fundusAtroCb && !_isO3) {
