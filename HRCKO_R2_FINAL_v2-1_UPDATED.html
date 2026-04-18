@@ -3,7 +3,7 @@
 <html lang="hr">
 <head>
 <meta charset="utf-8"/>
-<title>HRČKO STUDIJA v2.1.5-fix9</title>
+<title>HRČKO STUDIJA v2.1.5-fix10</title>
 <style>
         /* STILOVI */
         body { font-family: Arial, sans-serif; max-width: 950px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; }
@@ -373,7 +373,7 @@
 <div id="study-overlay">
 <div class="smodal">
   <div style="font-size:2.6em;margin-bottom:8px">&#128300;</div>
-  <h2>HR&#268;KO STUDIJA</h2><span style="font-size:0.65em;color:#90caf9;display:block;margin-top:-2px;">v2.1.5-fix9</span>
+  <h2>HR&#268;KO STUDIJA</h2><span style="font-size:0.65em;color:#90caf9;display:block;margin-top:-2px;">v2.1.5-fix10</span>
   <span class="ssub">Inter-observer video rating study</span>
   <label>Rater ID <span style="color:#e53935">*</span>
     <input type="text" id="sinput-rater" placeholder="npr. R01" maxlength="10" oninput="this.value=this.value.toUpperCase()">
@@ -465,7 +465,7 @@
     <div class="sp-row" style="margin-top:4px;"><span class="sp-label">✍️ Pisanje:</span> <span class="sp-val" id="sp-trajanje">– min</span></div>
 </div>
 <div class="container">
-<h2>🔬 HRČKO STUDIJA <small style="font-size:0.4em;color:#999;font-weight:normal;">v2.1.5-fix9</small></h2>
+<h2>🔬 HRČKO STUDIJA <small style="font-size:0.4em;color:#999;font-weight:normal;">v2.1.5-fix10</small></h2>
 <!-- 1. PREPROCEDURALNI DIO -->
 <section id="pre-section">
 <h3 class="collapsible-header" onclick="togglePreSection()">1. Preproceduralno <span class="pre-toggle-icon" id="pre-toggle-icon">▲</span></h3><div id="pre-summary"></div>
@@ -1773,11 +1773,10 @@
             const el = document.getElementById(inputId);
             if (!el) return;
             if (cb.checked) {
-                // Uredan označen → briši tekst i blokiraj polje
-                el.value           = '';
-                el.style.opacity       = '0.35';
-                el.style.pointerEvents = 'none';
-                el.placeholder         = '(Uredan — odznačite za slobodni opis)';
+                // Uredan označen → textarea ostaje otvorena za dodatni komentar
+                el.style.opacity       = '0.7';
+                el.style.pointerEvents = 'auto';
+                el.placeholder         = '(Uredan — po potrebi dodajte komentar, npr. glikoakantoza...)';
             } else {
                 // Uredan odznačen → aktiviraj polje
                 el.style.opacity       = '1';
@@ -2464,7 +2463,10 @@
         function getSegmentText(cbId, textId, normalText, segmentName, upalaId) {
             const el = document.getElementById(textId);
             const manual = el ? el.value.trim() : '';
-            if (document.getElementById(cbId) && document.getElementById(cbId).checked) return normalText;
+            if (document.getElementById(cbId) && document.getElementById(cbId).checked) {
+                if (manual) return normalText + ' ' + (manual.endsWith('.') ? manual : manual + '.');
+                return normalText;
+            }
             if (!manual) {
                 // Upala aktivna — vraćamo '' jer upala pokriva mukozu (merged u segment tekst)
                 if (upalaId && document.getElementById(upalaId) && document.getElementById(upalaId).checked) return '';
@@ -2735,7 +2737,10 @@
             if (normId === 'fundus_norm' && _fundusAtro)     _segUnderAtro = true;
 
             const normEl = document.getElementById(normId);
-            if (!_segUnderAtro && normEl && normEl.checked) return defaultTxt;
+            if (!_segUnderAtro && normEl && normEl.checked) {
+                if (manual) return defaultTxt + ' ' + (manual.endsWith('.') ? manual : manual + '.');
+                return defaultTxt;
+            }
 
             const txEl   = document.getElementById(txtId);
             const manual = txEl ? txEl.value.trim() : '';
@@ -3468,7 +3473,7 @@ function sDownloadCSV() {
 }
 
 function sFormReset() {
-  document.title = "RESET FIRED - fix9 " + new Date().toLocaleTimeString();
+  document.title = "RESET FIRED - fix10 " + new Date().toLocaleTimeString();
   // Reset sve checkboxeve i radio gumbe
   document.querySelectorAll('input[type=checkbox]').forEach(function(el){ el.checked = false; });
   document.querySelectorAll('input[type=radio]').forEach(function(el){ el.checked = false; });
@@ -3633,4 +3638,3 @@ function sNext() {
 </script>
 </body>
 </html>
-
